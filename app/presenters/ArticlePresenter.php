@@ -22,7 +22,6 @@ class ArticlePresenter extends BasePresenter
 	public function renderShow($articleId)
 	{
 		$article = $this->database->table('articles')->get($articleId);
-		dump($container);die();
 		if (!$article) {
 			$this->error('Stránka nebyla nalezena');
 		}
