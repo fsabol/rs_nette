@@ -1,0 +1,17 @@
+{block content}
+
+{if $user->loggedIn}
+	<a n:href="Article:edit $article->id"><button type="button" class="btn btn-success">Upravit článek</button></a>
+{/if}
+
+{if $user->loggedIn}
+	<a n:href="Article:delete $article->id"
+	   onclick="return confirm('Opravdu chcete smazat záznam?');"><button type="button" class="btn btn-danger">
+			Smazat článek</button></a>
+{/if}
+
+	<h1 n:block="title">{$article->title}</h1>
+
+	<div class="post">{$article->anotace}</div>
+
+	<div class="post">{$article->content}</div>

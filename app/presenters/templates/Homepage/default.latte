@@ -1,0 +1,29 @@
+{block content}
+
+{if $user->loggedIn}
+	<a n:href="Article:create"><button type="button" class="btn btn-success">Vytvořit článek</button></a>
+{/if}
+
+<h1 n:block="title">Články</h1>
+
+<div class="container">
+   <table id="list"">
+    <thead>
+      <tr>
+        <th>název</th>
+		<th>anotace</th>
+        <th>článek</th>
+      </tr>
+    </thead>
+
+    <tbody>
+		<tr n:foreach="$articles as $article">
+			<td><a n:href="Article:show $article->id">{$article->title}</a></td>
+			<td>{$article->anotace}</td>
+			<td>{$article->content}</td>
+		</tr>
+    </tbody>
+  </table>
+</div>
+
+{/block}

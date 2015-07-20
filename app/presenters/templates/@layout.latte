@@ -1,0 +1,61 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages
+*}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+
+
+		<title>{ifset title}{include title|striptags}{/ifset}</title>
+
+		<link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="{$basePath}/css/style.css">
+		<link rel="shortcut icon" href="{$basePath}/favicon.ico">
+		<meta name="viewport" content="width=device-width">
+		{block head}{/block}
+	</head>
+
+	<body>
+
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div>
+					<ul class="nav navbar-nav">
+						<li><a n:href="Homepage:">Články</a></li>
+
+						{if $user->loggedIn}
+							<li><a n:href="Sign:out">Odhlásit</a></li>
+							{else}
+							<li><a n:href="Sign:in">Přihlásit</a></li>
+							{/if}
+
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+
+		<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+
+		{include content}
+
+		{block scripts}
+		<script src="//nette.github.io/resources/js/netteForms.min.js"></script>
+		<script src="{$basePath}/js/main.js"></script>
+
+		<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+		<script>
+			$(function () {
+				$("#list").dataTable();
+			})
+		</script>
+
+		{/block}
+	</body>
+</html>
